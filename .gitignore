@@ -1,0 +1,12 @@
+# Add these entries to .gitignore if not present
+.env
+appsettings.*.json
+!appsettings.json
+*.user
+.vs/
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+.idea/

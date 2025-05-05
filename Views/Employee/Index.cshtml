@@ -1,0 +1,88 @@
+@model IEnumerable<Employee>
+<h1>This is Emp View</h1>
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <a asp-action="Create" class="btn btn-primary">Create New Employee</a>
+    </div>
+<div class="col-md-6">
+    <form asp-action="Index" method="get" class="form-inline float-right">
+        <div class="input-group">
+            <input type="text" name="searchByName" class="form-control" placeholder="Search by name...">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-secondary">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+
+@* </div> *@
+@* @using (Html.BeginForm()) *@
+@* { *@
+@*     <div class="input-group"> *@
+@*             @Html.TextBox("SearchString", null, new {@class="form-control", @placeholder="Search by emp name"}) *@
+@*             <input type="submit" value="Search" class="btn btn-outline-success" /> *@
+@*             <a asp-action="Create" class="btn btn-outline-primary">Create New Employee</a> *@
+@*     </div> *@
+@* } *@
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.ActionLink("Employee ID", "Index", new {sortField="EmployeeId", currentSortField=ViewBag.SortField, sortDirection=ViewBag.SortDirection})
+        </th>
+        <th>
+            @Html.ActionLink("Employee Number", "Index", new {sortField="EmployeeNumber", currentSortField=ViewBag.SortField, sortDirection=ViewBag.SortDirection})
+        </th>
+        <th>
+            @Html.ActionLink("Employee Name", "Index", new {sortField="EmployeeName", currentSortField=ViewBag.SortField, sortDirection=ViewBag.SortDirection})
+        </th>
+        <th>
+            @Html.ActionLink("Gross Salary", "Index", new {sortField="GrossSalary", currentSortField=ViewBag.SortField, sortDirection=ViewBag.SortDirection})
+        </th>
+        <th>
+            @Html.ActionLink("Net Salary", "Index", new {sortField="NetSalary", currentSortField=ViewBag.SortField, sortDirection=ViewBag.SortDirection})
+        </th>
+        <th>
+            @Html.ActionLink("Hiring Date", "Index", new {sortField="HiringDate", currentSortField=ViewBag.SortField, sortDirection=ViewBag.SortDirection})
+        </th>
+        <th>
+            @Html.ActionLink("Department Name", "Index", new {sortField="DepartmentName", currentSortField=ViewBag.SortField, sortDirection=ViewBag.SortDirection})
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GrossSalary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NetSalary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HiringDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentName)
+            </td>
+            <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EmployeeId})
+            @Html.ActionLink("Delete", "Delete", new { id=item.EmployeeId}, new {onclick = "return confirm('Are U Sure?');"})
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
